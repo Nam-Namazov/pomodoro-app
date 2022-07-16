@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		990A4EFF2883232300027CF5 /* AddNewToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990A4EFE2883232300027CF5 /* AddNewToDoViewController.swift */; };
+		990A4F012883273900027CF5 /* NewToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990A4F002883273900027CF5 /* NewToDoTableViewCell.swift */; };
 		9941458A2882FA22007CDFEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994145892882FA22007CDFEC /* AppDelegate.swift */; };
 		9941458C2882FA22007CDFEC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9941458B2882FA22007CDFEC /* SceneDelegate.swift */; };
 		994145932882FA23007CDFEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 994145922882FA23007CDFEC /* Assets.xcassets */; };
@@ -20,6 +22,8 @@
 
 /* Begin PBXFileReference section */
 		8A629574D4F21C695D3FF1B4 /* Pods-pomodoro-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pomodoro-app.debug.xcconfig"; path = "Target Support Files/Pods-pomodoro-app/Pods-pomodoro-app.debug.xcconfig"; sourceTree = "<group>"; };
+		990A4EFE2883232300027CF5 /* AddNewToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewToDoViewController.swift; sourceTree = "<group>"; };
+		990A4F002883273900027CF5 /* NewToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewToDoTableViewCell.swift; sourceTree = "<group>"; };
 		994145862882FA22007CDFEC /* pomodoro-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pomodoro-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		994145892882FA22007CDFEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9941458B2882FA22007CDFEC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +67,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		990A4F022883274400027CF5 /* ToDoList */ = {
+			isa = PBXGroup;
+			children = (
+				9941459F28830015007CDFEC /* ToDoListViewController.swift */,
+				990A4EFE2883232300027CF5 /* AddNewToDoViewController.swift */,
+				990A4F002883273900027CF5 /* NewToDoTableViewCell.swift */,
+			);
+			path = ToDoList;
+			sourceTree = "<group>";
+		};
 		9941457D2882FA22007CDFEC = {
 			isa = PBXGroup;
 			children = (
@@ -97,8 +111,8 @@
 		994145A528830260007CDFEC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				990A4F022883274400027CF5 /* ToDoList */,
 				9941459D2882FF54007CDFEC /* MainTabBarController.swift */,
-				9941459F28830015007CDFEC /* ToDoListViewController.swift */,
 				994145A12883001F007CDFEC /* PomodoroViewController.swift */,
 				994145A32883016F007CDFEC /* SettingsViewController.swift */,
 			);
@@ -219,6 +233,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				990A4F012883273900027CF5 /* NewToDoTableViewCell.swift in Sources */,
+				990A4EFF2883232300027CF5 /* AddNewToDoViewController.swift in Sources */,
 				9941458A2882FA22007CDFEC /* AppDelegate.swift in Sources */,
 				9941459E2882FF54007CDFEC /* MainTabBarController.swift in Sources */,
 				994145A22883001F007CDFEC /* PomodoroViewController.swift in Sources */,
