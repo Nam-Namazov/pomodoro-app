@@ -1,5 +1,5 @@
 //
-//  ToDoListViewController.swift
+//  AddNewToDoViewController.swift
 //  pomodoro-app
 //
 //  Created by Намик on 7/16/22.
@@ -7,20 +7,14 @@
 
 import UIKit
 
-final class ToDoListViewController: UIViewController {
-    // MARK: - Properties
+final class AddNewToDoViewController: UIViewController {
 
-    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
     }
-
-    // MARK: - Helpers
+    
     private func style() {
         view.backgroundColor = .white
-        title = navigationController?.title
     }
-
-    // MARK: - Selectors
 }
