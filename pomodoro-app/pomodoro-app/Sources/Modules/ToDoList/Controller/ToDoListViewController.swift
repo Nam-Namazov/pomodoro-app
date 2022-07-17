@@ -8,7 +8,6 @@
 import UIKit
 
 final class ToDoListViewController: UIViewController {
-    // MARK: - Properties
     private let searchBarController = UISearchController()
     
     private let addButton: UIButton = {
@@ -25,8 +24,6 @@ final class ToDoListViewController: UIViewController {
         return tableview
     }()
     
-
-    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
@@ -35,7 +32,6 @@ final class ToDoListViewController: UIViewController {
         actionAddButton()
     }
 
-    // MARK: - Helpers
     private func style() {
         view.backgroundColor = .white
         title = navigationController?.title
@@ -74,13 +70,13 @@ final class ToDoListViewController: UIViewController {
         ])
     }
 
-    // MARK: - Selectors
-    
     @objc private func handleAddButton() {
         let vc = AddNewToDoViewController()
-        present(vc, animated: true)
+        let navController = UINavigationController(rootViewController: vc)
+        present(navController, animated: true)
     }
 }
+
 // MARK: - UITableViewDataSource
 extension ToDoListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
