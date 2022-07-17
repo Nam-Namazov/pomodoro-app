@@ -1,5 +1,5 @@
 //
-//  AddNewToDoViewController.swift
+//  PomodoroViewController.swift
 //  pomodoro-app
 //
 //  Created by Намик on 7/16/22.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-final class AddNewToDoViewController: UIViewController {
-
+final class PomodoroViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
     }
-    
+
     private func style() {
         view.backgroundColor = .white
+        title = navigationController?.title
     }
 }
