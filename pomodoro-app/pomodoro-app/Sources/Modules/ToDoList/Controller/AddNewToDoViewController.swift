@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class AddNewToDoViewController: UIViewController {
+    var onDismiss: (() -> Void)?
+    
     private let captureTextField: UITextField = {
         let textfield = UITextField()
         textfield.placeholder = "What would you like to do?"
@@ -35,20 +38,21 @@ final class AddNewToDoViewController: UIViewController {
         setup()
         configureNavBar()
         uploadToDoButtonTapped()
+        print("DEBUG\(Realm.Configuration.defaultConfiguration.fileURL!)")
     }
-    
-    // MARK: - Helpers
+
     private func style() {
         view.backgroundColor = .white
     }
     
     private func configureNavBar() {
         navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.isTranslucent = true
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
                                                            target: self,
                                                            action: #selector(handleCancel))
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: uploadToDoButton)
     }
 
@@ -77,6 +81,15 @@ final class AddNewToDoViewController: UIViewController {
     }
     
     @objc private func uploadToDo() {
-        // отправить этот текст из текстфилда в cell тудулиста (мб засейвить в реалм и в селл зарефетчить и вставить)
+        guard let textFromTextField = captureTextField.text,
+              captureTextField.hasText else { return }
+        
+        let todo = ToDo(textToDo: textFromTextField)
+        
+        RealmManager.shared.saveToDo(todo: todo)
+        
+        dismiss(animated: true) { [weak self] in
+            self?.onDismiss?()
+        }
     }
 }

@@ -8,14 +8,12 @@
 import UIKit
 
 final class MainTabBarController: UITabBarController {
-    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
         setupTabBarController()
     }
-    
-    // MARK: - Helpers
+
     private func style() {
         view.backgroundColor = .white
         
@@ -45,7 +43,9 @@ final class MainTabBarController: UITabBarController {
                                                      imageName: "gearshape",
                                                      title: "Settings")
         
-        viewControllers = [toDoController, pomodoroController, settingsController]
+        viewControllers = [toDoController,
+                           pomodoroController,
+                           settingsController]
     }
     
     private func createNavController(controller: UIViewController,

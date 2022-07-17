@@ -9,5 +9,10 @@ import Foundation
 import RealmSwift
 
 class ToDo: Object {
+    @Persisted var textToDo: String
     
+    convenience init(textToDo: String) {
+        self.init()
+        self.textToDo = textToDo
+    }
 }

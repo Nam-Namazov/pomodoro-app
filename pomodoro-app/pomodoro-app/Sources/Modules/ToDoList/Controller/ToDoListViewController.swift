@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class ToDoListViewController: UIViewController {
+    var list: [ToDo] {
+        RealmManager.shared.toDoList
+    }
+    
     private let searchBarController = UISearchController()
     
     private let addButton: UIButton = {
@@ -21,6 +26,8 @@ final class ToDoListViewController: UIViewController {
     private let todoListTableView: UITableView = {
         let tableview = UITableView(frame: .zero,
                                     style: .insetGrouped)
+        tableview.register(NewToDoTableViewCell.self,
+                           forCellReuseIdentifier: NewToDoTableViewCell.identifier)
         return tableview
     }()
     
@@ -28,7 +35,7 @@ final class ToDoListViewController: UIViewController {
         super.viewDidLoad()
         style()
         setup()
-        configureTableView()
+        configureDelegate()
         actionAddButton()
     }
 
@@ -39,7 +46,7 @@ final class ToDoListViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
-    private func configureTableView() {
+    private func configureDelegate() {
         todoListTableView.delegate = self
         todoListTableView.dataSource = self
     }
@@ -72,6 +79,9 @@ final class ToDoListViewController: UIViewController {
 
     @objc private func handleAddButton() {
         let vc = AddNewToDoViewController()
+        vc.onDismiss = { [weak self] in
+            self?.todoListTableView.reloadData()
+        }
         let navController = UINavigationController(rootViewController: vc)
         present(navController, animated: true)
     }
@@ -81,12 +91,20 @@ final class ToDoListViewController: UIViewController {
 extension ToDoListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return list.count
     }
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: NewToDoTableViewCell.identifier,
+            for: indexPath) as? NewToDoTableViewCell else {
+            return UITableViewCell()
+        }
+
+        cell.configure(with: list[indexPath.row].textToDo)
+
+        return cell
     }
 }
 
@@ -97,4 +115,3 @@ extension ToDoListViewController: UITableViewDelegate {
         return 80
     }
 }
-
