@@ -13,8 +13,6 @@ final class ToDoListViewController: UIViewController {
         RealmManager.shared.toDoList
     }
     
-    private let searchBarController = UISearchController()
-    
     private let addButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "plus"),
@@ -42,8 +40,6 @@ final class ToDoListViewController: UIViewController {
     private func style() {
         view.backgroundColor = .white
         title = navigationController?.title
-        navigationItem.searchController = searchBarController
-        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     private func configureDelegate() {
@@ -101,9 +97,15 @@ extension ToDoListViewController: UITableViewDataSource {
             for: indexPath) as? NewToDoTableViewCell else {
             return UITableViewCell()
         }
-
         cell.configure(with: list[indexPath.row].textToDo)
-
+        cell.onDelete = { [weak self] in
+            guard let self = self else {
+                return
+            }
+            RealmManager.shared.deleteToDo(todo: self.list[indexPath.row])
+            self.todoListTableView.deleteRows(at: [indexPath], with: .left)
+            self.todoListTableView.reloadData()
+        }
         return cell
     }
 }
@@ -113,5 +115,28 @@ extension ToDoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let vc = EditToDoViewController()
+        vc.setTextFromCell(text: list[indexPath.row].textToDo)
+        vc.indexOfElement = indexPath.row
+        vc.onDismiss = { [weak self] in
+            self?.todoListTableView.reloadData()
+        }
+        let navController = UINavigationController(rootViewController: vc)
+        present(navController, animated: true)
+    }
+
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            RealmManager.shared.deleteToDo(todo: list[indexPath.row])
+            tableView.deleteRows(at: [indexPath], with: .right)
+            tableView.reloadData()
+        }
     }
 }

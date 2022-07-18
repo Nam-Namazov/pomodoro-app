@@ -11,34 +11,17 @@ import RealmSwift
 final class AddNewToDoViewController: UIViewController {
     var onDismiss: (() -> Void)?
     
-    private let captureTextField: UITextField = {
-        let textfield = UITextField()
-        textfield.placeholder = "What would you like to do?"
-        textfield.textAlignment = .left
-        textfield.autocorrectionType = .no
-        textfield.textColor = .black
-        return textfield
-    }()
+    private let textView = CaptionTextView()
     
-    private let uploadToDoButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .lightBlueColor
-        button.setTitle("Create", for: .normal)
-        button.titleLabel?.textAlignment = .center
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.setTitleColor(.white, for: .normal)
-        button.frame = CGRect(x: 0, y: 0, width: 64, height: 32)
-        button.layer.cornerRadius = 32 / 2
-        return button
-    }()
-    
+    private let uploadToDoButton = Utilis().button(withTitle: "Create")
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("DEBUG\(Realm.Configuration.defaultConfiguration.fileURL!)")
         style()
         setup()
         configureNavBar()
         uploadToDoButtonTapped()
-        print("DEBUG\(Realm.Configuration.defaultConfiguration.fileURL!)")
     }
 
     private func style() {
@@ -63,33 +46,21 @@ final class AddNewToDoViewController: UIViewController {
     }
 
     private func setup() {
-        let stackView = UIStackView(arrangedSubviews: [captureTextField])
-        stackView.axis = .horizontal
-        stackView.spacing = 12
-
-        view.addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
-        ])
+        Utilis().setup(textView: textView, view: view)
     }
 
     @objc private func handleCancel() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
     
     @objc private func uploadToDo() {
-        guard let textFromTextField = captureTextField.text,
-              captureTextField.hasText else { return }
-        
-        let todo = ToDo(textToDo: textFromTextField)
-        
-        RealmManager.shared.saveToDo(todo: todo)
-        
-        dismiss(animated: true) { [weak self] in
-            self?.onDismiss?()
+        guard let textFromTextView = textView.text,
+              textView.hasText else {
+            return
         }
+        let todo = ToDo(textToDo: textFromTextView)
+        RealmManager.shared.saveToDo(todo: todo)
+        onDismiss?()
+        dismiss(animated: true)
     }
 }

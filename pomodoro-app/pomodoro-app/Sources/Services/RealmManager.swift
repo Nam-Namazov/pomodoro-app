@@ -19,7 +19,7 @@ class RealmManager {
             })
         }
         catch {
-            print("error \(error.localizedDescription)")
+            print("error")
         }
     }
 
@@ -27,11 +27,15 @@ class RealmManager {
         Array(realm.objects(ToDo.self))
     }
     
-    func editToDo() {
-        
+    func editToDo(at index: Int, _ text: String) {
+        try? realm.write({
+            toDoList[index].textToDo = text
+        })
     }
     
-    func deleteToDo() {
-        
+    func deleteToDo(todo: ToDo) {
+        try? realm.write({
+            realm.delete(todo)
+        })
     }
 }
