@@ -22,7 +22,7 @@
 		996713C628857455006236DA /* Utilis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996713C528857455006236DA /* Utilis.swift */; };
 		9971193B2885A9A800A369EC /* CaptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9971193A2885A9A800A369EC /* CaptionTextView.swift */; };
 		99F0FA3D28840C9A0083778A /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F0FA3C28840C9A0083778A /* RealmManager.swift */; };
-		99F0FA4028840D0D0083778A /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F0FA3F28840D0D0083778A /* ToDo.swift */; };
+		99F0FA4028840D0D0083778A /* ToDoTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F0FA3F28840D0D0083778A /* ToDoTask.swift */; };
 		E13B72CEBFCEEF23DD3FB9A9 /* Pods_pomodoro_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFC792EF36CC35558B03A1BE /* Pods_pomodoro_app.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,7 +45,7 @@
 		996713C528857455006236DA /* Utilis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilis.swift; sourceTree = "<group>"; };
 		9971193A2885A9A800A369EC /* CaptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionTextView.swift; sourceTree = "<group>"; };
 		99F0FA3C28840C9A0083778A /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
-		99F0FA3F28840D0D0083778A /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
+		99F0FA3F28840D0D0083778A /* ToDoTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTask.swift; sourceTree = "<group>"; };
 		9DE08135F01AB76A709AB9C2 /* Pods-pomodoro-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pomodoro-app.release.xcconfig"; path = "Target Support Files/Pods-pomodoro-app/Pods-pomodoro-app.release.xcconfig"; sourceTree = "<group>"; };
 		CFC792EF36CC35558B03A1BE /* Pods_pomodoro_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pomodoro_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -202,7 +202,7 @@
 		99F0FA4328840E5C0083778A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				99F0FA3F28840D0D0083778A /* ToDo.swift */,
+				99F0FA3F28840D0D0083778A /* ToDoTask.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -384,7 +384,7 @@
 				990A4F012883273900027CF5 /* NewToDoTableViewCell.swift in Sources */,
 				990A4F0428833C4200027CF5 /* UIColor.swift in Sources */,
 				990A4EFF2883232300027CF5 /* AddNewToDoViewController.swift in Sources */,
-				99F0FA4028840D0D0083778A /* ToDo.swift in Sources */,
+				99F0FA4028840D0D0083778A /* ToDoTask.swift in Sources */,
 				9941458A2882FA22007CDFEC /* AppDelegate.swift in Sources */,
 				996713C628857455006236DA /* Utilis.swift in Sources */,
 				9941459E2882FF54007CDFEC /* MainTabBarController.swift in Sources */,

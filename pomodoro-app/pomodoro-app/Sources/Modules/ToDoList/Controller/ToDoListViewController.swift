@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 
 final class ToDoListViewController: UIViewController {
-    var list: [ToDo] {
+    var list: [ToDoTask] {
         RealmManager.shared.toDoList
     }
     
@@ -24,8 +24,7 @@ final class ToDoListViewController: UIViewController {
     private let todoListTableView: UITableView = {
         let tableview = UITableView(frame: .zero,
                                     style: .insetGrouped)
-        tableview.register(NewToDoTableViewCell.self,
-                           forCellReuseIdentifier: NewToDoTableViewCell.identifier)
+        tableview.register(NewToDoTableViewCell.self, forCellReuseIdentifier: NewToDoTableViewCell.identifier)
         return tableview
     }()
     
@@ -97,11 +96,18 @@ extension ToDoListViewController: UITableViewDataSource {
             for: indexPath) as? NewToDoTableViewCell else {
             return UITableViewCell()
         }
-        cell.configure(with: list[indexPath.row].textToDo)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let timeStamp = dateFormatter.string(from: list[indexPath.row].time)
+        
+        cell.configure(with: list[indexPath.row].textToDo, time: timeStamp)
+        
         cell.onDelete = { [weak self] in
             guard let self = self else {
                 return
             }
+            
             RealmManager.shared.deleteToDo(todo: self.list[indexPath.row])
             self.todoListTableView.deleteRows(at: [indexPath], with: .left)
             self.todoListTableView.reloadData()

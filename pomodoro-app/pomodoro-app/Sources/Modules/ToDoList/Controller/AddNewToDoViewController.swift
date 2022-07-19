@@ -58,7 +58,8 @@ final class AddNewToDoViewController: UIViewController {
               textView.hasText else {
             return
         }
-        let todo = ToDo(textToDo: textFromTextView)
+        
+        let todo = ToDoTask(textToDo: textFromTextView, time: Date())
         RealmManager.shared.saveToDo(todo: todo)
         onDismiss?()
         dismiss(animated: true)
