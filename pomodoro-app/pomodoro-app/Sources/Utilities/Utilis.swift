@@ -8,6 +8,24 @@
 import UIKit
 
 class Utilis {
+    func labelBold(with text: String?, font: CGFloat, numberOfLines: Int, textColor: UIColor) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.font = UIFont.boldSystemFont(ofSize: font)
+        label.numberOfLines = numberOfLines
+        label.textColor = textColor
+        return label
+    }
+    
+    func labelStandard(with text: String?, font: CGFloat, numberOfLines: Int, textColor: UIColor) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.font = UIFont.systemFont(ofSize: font)
+        label.numberOfLines = numberOfLines
+        label.textColor = textColor
+        return label
+    }
+    
     
     func button(withTitle title: String ) -> UIButton {
         let button = UIButton()
@@ -31,4 +49,3 @@ class Utilis {
         ])
     }
 }
-

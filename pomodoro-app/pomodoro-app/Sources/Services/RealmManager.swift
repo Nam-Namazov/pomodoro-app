@@ -12,7 +12,7 @@ class RealmManager {
     static let shared = RealmManager()
     private let realm = try! Realm()
     
-    func saveToDo(todo: ToDo) {
+    func saveToDo(todo: ToDoTask) {
         do {
             try realm.write({
                 realm.add(todo)
@@ -23,8 +23,8 @@ class RealmManager {
         }
     }
 
-    var toDoList: [ToDo] {
-        Array(realm.objects(ToDo.self))
+    var toDoList: [ToDoTask] {
+        Array(realm.objects(ToDoTask.self))
     }
     
     func editToDo(at index: Int, _ text: String) {
@@ -33,7 +33,7 @@ class RealmManager {
         })
     }
     
-    func deleteToDo(todo: ToDo) {
+    func deleteToDo(todo: ToDoTask) {
         try? realm.write({
             realm.delete(todo)
         })

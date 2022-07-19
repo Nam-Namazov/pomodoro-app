@@ -7,11 +7,13 @@
 
 import RealmSwift
 
-class ToDo: Object {
+class ToDoTask: Object {
     @Persisted var textToDo: String
+    @Persisted var time: Date
     
-    convenience init(textToDo: String) {
+    convenience init(textToDo: String, time: Date) {
         self.init()
         self.textToDo = textToDo
+        self.time = time
     }
 }

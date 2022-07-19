@@ -11,14 +11,16 @@ final class NewToDoTableViewCell: UITableViewCell {
     static let identifier = "cellid"
     
     var onDelete: (() -> Void)?
+
+    private let todoLabel = Utilis().labelBold(with: nil,
+                                               font: 15,
+                                               numberOfLines: 0,
+                                               textColor: .black)
     
-    private let todoLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.numberOfLines = 0
-        label.textColor = .black
-        return label
-    }()
+    private let dataLabel = Utilis().labelStandard(with: nil,
+                                                   font: 13,
+                                                   numberOfLines: 1,
+                                                   textColor: .gray)
     
     private let markDonebutton: UIButton = {
         let button = UIButton()
@@ -44,8 +46,9 @@ final class NewToDoTableViewCell: UITableViewCell {
         markDonebutton.isSelected = false
     }
     
-    func configure(with textLabel: String) {
+    func configure(with textLabel: String, time: String) {
         todoLabel.text = textLabel
+        dataLabel.text = time
     }
     
     private func checkMarkButtonTapped() {
@@ -55,18 +58,23 @@ final class NewToDoTableViewCell: UITableViewCell {
     private func layout() {
         contentView.addSubview(markDonebutton)
         contentView.addSubview(todoLabel)
+        contentView.addSubview(dataLabel)
         
         markDonebutton.translatesAutoresizingMaskIntoConstraints = false
         todoLabel.translatesAutoresizingMaskIntoConstraints = false
+        dataLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            markDonebutton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             markDonebutton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            markDonebutton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             
-            todoLabel.leadingAnchor.constraint(equalTo: markDonebutton.trailingAnchor, constant: 10),
-            todoLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            todoLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            todoLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10)
+            todoLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            todoLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
+            todoLabel.widthAnchor.constraint(equalToConstant: 250),
+            todoLabel.heightAnchor.constraint(equalToConstant: 50),
+            
+            dataLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            dataLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
     }
     

@@ -21,4 +21,3 @@ extension UIColor {
                                             green: 161,
                                             blue: 242)
 }
-
