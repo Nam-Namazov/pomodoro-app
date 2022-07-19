@@ -34,8 +34,7 @@ class CaptionTextView: UITextView {
         autocorrectionType = .no
         backgroundColor = .white
         font = UIFont.boldSystemFont(ofSize: 18)
-        isScrollEnabled = false
-        heightAnchor.constraint(equalToConstant: 300).isActive = true
+        isScrollEnabled = true
 
         NotificationCenter.default.addObserver(self, selector: #selector(handleTextChange), name: UITextView.textDidChangeNotification, object: nil)
     }

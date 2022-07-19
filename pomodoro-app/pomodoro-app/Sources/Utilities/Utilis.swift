@@ -45,7 +45,8 @@ class Utilis {
         NSLayoutConstraint.activate([
             textView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             textView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            textView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
+            textView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            textView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }

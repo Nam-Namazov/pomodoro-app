@@ -71,7 +71,7 @@ final class NewToDoTableViewCell: UITableViewCell {
             todoLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             todoLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
             todoLabel.widthAnchor.constraint(equalToConstant: 250),
-            todoLabel.heightAnchor.constraint(equalToConstant: 50),
+            todoLabel.heightAnchor.constraint(equalToConstant: 30),
             
             dataLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             dataLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
