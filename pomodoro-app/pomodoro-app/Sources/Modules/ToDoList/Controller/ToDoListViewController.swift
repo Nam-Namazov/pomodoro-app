@@ -25,6 +25,8 @@ final class ToDoListViewController: UIViewController {
         let tableview = UITableView(frame: .zero,
                                     style: .insetGrouped)
         tableview.register(NewToDoTableViewCell.self, forCellReuseIdentifier: NewToDoTableViewCell.identifier)
+        tableview.backgroundColor = .clear
+        tableview.layer.masksToBounds = false
         return tableview
     }()
     
@@ -37,8 +39,9 @@ final class ToDoListViewController: UIViewController {
     }
 
     private func style() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGray6
         title = navigationController?.title
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func configureDelegate() {

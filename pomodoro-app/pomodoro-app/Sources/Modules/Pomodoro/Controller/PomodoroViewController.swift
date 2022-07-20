@@ -14,7 +14,8 @@ final class PomodoroViewController: UIViewController {
     }
 
     private func style() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGray6
         title = navigationController?.title
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
